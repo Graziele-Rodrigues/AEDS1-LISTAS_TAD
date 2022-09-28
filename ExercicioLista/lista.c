@@ -46,7 +46,7 @@ void Imprimir(TLista Lista) { // passagem por referencia
   }
 }
 
-/*TCelula* Pesquisar(TLista Lista, TProduto item){
+TCelula* Pesquisar(TLista Lista, TProduto item){
 	TCelula* aux;
 	aux = Lista.primeiro;
 	while (aux->prox != NULL)
@@ -71,4 +71,4 @@ void Excluir(TLista *Lista, TProduto *item){
 		}
 		free(aux2);
 	}
-}*/
+}

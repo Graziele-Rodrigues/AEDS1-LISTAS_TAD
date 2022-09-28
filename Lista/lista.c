@@ -4,7 +4,7 @@
 
 /* corpo das funcoes que possuem assinatura em lsita.h */
 
-void LerProduto(TProduto *x) { // passando por referencia
+void LerProduto(TProduto *x) { //passando por referencia -> alteraçoes afetam fora da funcao
   printf("\ndigite o nome: ");
   fflush(stdin);
   fgets(x->nome, 100, stdin);
