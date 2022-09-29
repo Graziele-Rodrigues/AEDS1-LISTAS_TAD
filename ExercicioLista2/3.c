@@ -39,6 +39,15 @@ int Tamanho(TLista lista){
     return lista.tamanho; 
 } 
 
+void Imprimir(TLista Lista){ 
+  TCelula *aux;
+  aux = Lista.primeiro->prox;
+  while (aux != NULL) { 
+    printf("%c", aux->item.letra);
+    aux = aux->prox; 
+  }
+}
+
 void Inserir(TLista *Lista, TLetras letra){
   Lista->ultimo->prox = (TCelula *)malloc(sizeof(TCelula));
   Lista->ultimo = Lista->ultimo->prox; 
@@ -48,10 +57,24 @@ void Inserir(TLista *Lista, TLetras letra){
 }
 
 void Dividir(TLista Lista1, TLista Lista2, TLista Lista3){
-    
+    TCelula *aux1;
+    int n = 0, metade1=0, metade2=0, count1=0, count2=0;
+    n = Lista1.tamanho+1;
+    metade1=n/2;
+    metade2 = n - metade1;
+    aux1 = Lista1.primeiro;
+    while(count1<metade1){
+      aux1 = aux1->prox;
+      Inserir(&Lista2, aux1->item);
+      count1++;
+    }
+    while(count2<metade2){
+      aux1 = aux1->prox;
+      if(aux1!=NULL)
+        Inserir(&Lista3, aux1->item);
+      count2++;
+    }
 }
-
-
 
 
 int main(){
@@ -71,7 +94,11 @@ int main(){
     scanf("%d", &continuar);
   }while(continuar==1);
   
-  Dividir(Lista1, Lista2, Lista3)
+  Dividir(Lista1, Lista2, Lista3);
+  Imprimir(Lista2);
+  printf("\n================\n");
+  Imprimir(Lista3);
+
 
   return 0;
 }

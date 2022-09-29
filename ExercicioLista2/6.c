@@ -48,34 +48,23 @@ void Inserir(TLista *Lista, TLetras letra){
 }
 
 
-void RemoveItem(TLista *Lista, int i){
-	if (Lista->tamanho < i){
-		printf("\n\t\t NAO EXISTE \n");
-	}else{
-    int count=1;
-		TCelula *aux1, *aux2;
-    aux2 = aux1->prox;
-		aux1->prox = aux2->prox;
-		while(count<i){
-			aux2 = aux2->prox;
-			count++;
-		}
-    Lista->ultimo = aux1; 
-    free(atual);
-    /*
-    if(atual == Lista->primeiro){
-      Lista->primeiro = Lista->primeiro->prox;
-      free(atual);
-    }else{
-        if(atual == Lista->ultimo){
-          Lista->ultimo = anterior;
-        }
-        anterior->prox = atual->prox;
-        free(atual);
-    }*/
+void RemoveItem(TLista *Lista, int i) {
+  TCelula *Aux1, *Aux2;
+  int count=1;
+  Aux1 = Lista->primeiro;
+  while(count<i){
+    Aux1 = Aux1->prox;
+    count++;
   }
+  if (Aux1 != NULL) {
+    Aux2 = Aux1->prox;
+    Aux1->prox = Aux2->prox;
+    if (Aux1->prox == NULL)
+      Lista->ultimo = Aux1;
+    free(Aux2);
+    Lista->tamanho--;
+  } 
 }
-
 
 
 void Imprimir(TLista Lista){ 
@@ -103,7 +92,7 @@ int main(){
   }while(continuar==1);
   
   RemoveItem(&Lista, 3);
-  printf("\n\t\tNova lista\n");
+  printf("\nNova lista\n");
   Imprimir(Lista);
 
   return 0;
